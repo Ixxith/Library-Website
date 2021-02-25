@@ -1,4 +1,5 @@
 ﻿using Library_Website.Models;
+using Library_Website.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,16 +15,37 @@ namespace Library_Website.Controllers
         private readonly ILogger<HomeController> _logger;
         // Create private variable for book repository to be used in Index view
         private IBookRepository _repository;
+
+        // Set items per page
+        public int PageSize = 5;
         public HomeController(ILogger<HomeController> logger, IBookRepository repository)
         {
             _logger = logger;
             _repository = repository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            // Pass repository with books to index page
-            return View(_repository.books);
+            // Pass BookListViewModel the repository with books to index page. Order by BookId and skip items according to page number and takes only PageSize number of item
+            return View(
+                new BookListViewModel
+                {
+                    books = _repository.books
+                            .OrderBy(p => p.BookId)
+                            .Skip((page - 1) * PageSize)
+                            .Take(PageSize),
+
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = page,
+                        ItemsPerPage = PageSize,
+                        TotalNumItems = _repository.books.Count()
+                    }
+
+
+                }
+
+                ) ;
         }
 
      

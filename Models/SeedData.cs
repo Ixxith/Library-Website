@@ -37,7 +37,8 @@ namespace Library_Website.Models
                         ISBN = "978-0451419439",
                         Classification = "Fiction",
                         Category = "Classic",
-                        Price = 9.95
+                        Price = 9.95,
+                        Pages = 1488
 
                     },
 
@@ -50,7 +51,8 @@ namespace Library_Website.Models
                         ISBN = "978-0743270755",
                         Classification = "Non-Fiction",
                         Category = "Biography",
-                        Price = 14.58
+                        Price = 14.58,
+                        Pages = 944
 
                      },
 
@@ -63,7 +65,8 @@ namespace Library_Website.Models
                           ISBN = "978-0553384611",
                           Classification = "Non-Fiction",
                           Category = "Biography",
-                          Price = 21.54
+                          Price = 21.54,
+                          Pages = 832
 
                       },
 
@@ -76,9 +79,10 @@ namespace Library_Website.Models
                            ISBN = "978-0812981254",
                            Classification = "Non-Fiction",
                            Category = "Biography",
-                           Price = 11.61
+                           Price = 11.61,
+                           Pages = 864
 
-                    },
+                       },
 
                         new Book
                         {
@@ -89,7 +93,8 @@ namespace Library_Website.Models
                             ISBN = "978-0812974492",
                             Classification = "Non-Fiction",
                             Category = "Historical",
-                            Price =13.33
+                            Price =13.33,
+                            Pages = 528
 
                         },
 
@@ -102,7 +107,8 @@ namespace Library_Website.Models
                              ISBN = "978-0804171281",
                              Classification = "Fiction",
                              Category = "Historical Fiction",
-                             Price = 15.95
+                             Price = 15.95,
+                             Pages = 288
 
                          },
 
@@ -115,9 +121,10 @@ namespace Library_Website.Models
                               ISBN = "978-1455586691",
                               Classification = "Non-Fiction",
                               Category = "Self-Help",
-                              Price = 14.99
+                              Price = 14.99,
+                              Pages = 304
 
-                    },
+                          },
 
                            new Book
                            {
@@ -128,7 +135,8 @@ namespace Library_Website.Models
                                ISBN = "978-1455523023",
                                Classification = "Non-Fiction",
                                Category = "Self-Help",
-                               Price = 21.66
+                               Price = 21.66,
+                               Pages = 240
 
                            },
 
@@ -137,13 +145,14 @@ namespace Library_Website.Models
 
                                 Title = "The Virgin Way",
                                 Author = "Richard Branson",
-                                Publisher = "Portfolio ",
+                                Publisher = "Portfolio",
                                 ISBN = "978-1591847984",
                                 Classification = "Non-Fiction",
                                 Category = "Business",
-                                Price = 29.16
+                                Price = 29.16,
+                                Pages = 944
 
-                    },
+                            },
 
                              new Book
                              {
@@ -154,9 +163,54 @@ namespace Library_Website.Models
                                  ISBN = "978-0553393613",
                                  Classification = "Fiction",
                                  Category = "Thrillers",
-                                 Price = 15.03
+                                 Price = 15.03,
+                                 Pages = 642
 
-                    }
+                            },
+
+                             // Add the three new books
+
+                             new Book
+                             {
+
+                                 Author = "Brandon Sanderson",
+                                 Title = "Mistborn",
+                                 Publisher = "Tor Books",
+                                 ISBN = "978-0765360960",
+                                 Classification = "Fiction",
+                                 Category = "Fantasy",
+                                 Price = 24.44,
+                                 Pages = 672
+
+                             },
+
+                            new Book
+                            {
+
+                                Author = "Stephen Covey",
+                                Title = "The 7 Habits of Highly Effective People",
+                                Publisher = "Free Press",
+                                ISBN = "978-0743269519",
+                                Classification = "Non-Fiction",
+                                Category = "Self-Help",
+                                Price = 28.99,
+                                Pages = 384
+
+                            },
+
+                            new Book
+                            {
+
+                                Author = "Glen Cook",
+                                Title = "The Black Company",
+                                Publisher = "Tor Books",
+                                ISBN = "978-0812521399",
+                                Classification = "Fiction",
+                                Category = "Fantasy",
+                                Price = 8.91,
+                                Pages = 320
+
+                            }
 
                 );
                 // Save the changes to the database
