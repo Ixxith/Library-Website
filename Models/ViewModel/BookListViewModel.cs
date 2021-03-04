@@ -10,5 +10,7 @@ namespace Library_Website.Models.ViewModel
     {
         public IEnumerable<Book> books { get; set; }
         public PagingInfo PagingInfo { get; set; }
+
+        public string CurrentCategory { get; set; }
     }
 }

@@ -24,14 +24,15 @@ namespace Library_Website.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(string category, int page = 1)
         {
             // Pass BookListViewModel the repository with books to index page. Order by BookId and skip items according to page number and takes only PageSize number of item
             return View(
                 new BookListViewModel
                 {
                     books = _repository.books
-                            .OrderBy(p => p.BookId)
+                            .Where(b => category == null || b.Category == category)
+                            .OrderBy(b => b.BookId)
                             .Skip((page - 1) * PageSize)
                             .Take(PageSize),
 
@@ -39,13 +40,15 @@ namespace Library_Website.Controllers
                     {
                         CurrentPage = page,
                         ItemsPerPage = PageSize,
-                        TotalNumItems = _repository.books.Count()
-                    }
+                        TotalNumItems = category == null ? _repository.books.Count() : _repository.books.Where(b => b.Category == category).Count()
+                    },
 
-
+                    CurrentCategory = category
                 }
 
-                ) ;
+                
+
+                );
         }
 
      
