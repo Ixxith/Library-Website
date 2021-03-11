@@ -27,6 +27,20 @@
     </ul>-->
                 </div>
                 </div>
+            <div class="align-self-end">
+                <img height="30" src="~/img/shopping-cart-20392.png" />
+                <a class="h6 text-dark" href="/cart?returnURL=@ViewContext.HttpContext.Request.PathAndQuery()">
+                    @if (ViewBag.Cart == null)
+                    {
+                        <text> 0 Books  $0.00 </text>
+                    }
+                    else
+                    {
+                        <text> @ViewBag.Cart.ComputeTotalBooks() Book(s) @ViewBag.Cart.ComputeTotalSum().ToString("c") </text>
+                    }
+
+                </a>
+            </div>
         </nav>
     </header>
     <div class="container">

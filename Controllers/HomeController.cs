@@ -1,4 +1,5 @@
-﻿using Library_Website.Models;
+﻿using Library_Website.Infrastructure;
+using Library_Website.Models;
 using Library_Website.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,6 +16,7 @@ namespace Library_Website.Controllers
         private readonly ILogger<HomeController> _logger;
         // Create private variable for book repository to be used in Index view
         private IBookRepository _repository;
+        
 
         // Set items per page
         public int PageSize = 5;
@@ -24,8 +26,11 @@ namespace Library_Website.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index(string category, int page = 1)
+        public IActionResult Index(string category, int pageNum = 1)
         {
+            // Pass the Cart into the ViewBag so we can track the cart's total cost and total items
+            BookCart Cart = HttpContext.Session.GetJson<BookCart>("cart");
+            ViewBag.Cart = Cart;
             // Pass BookListViewModel the repository with books to index page. Order by BookId and skip items according to page number and takes only PageSize number of item
             return View(
                 new BookListViewModel
@@ -33,12 +38,12 @@ namespace Library_Website.Controllers
                     books = _repository.books
                             .Where(b => category == null || b.Category == category)
                             .OrderBy(b => b.BookId)
-                            .Skip((page - 1) * PageSize)
+                            .Skip((pageNum - 1) * PageSize)
                             .Take(PageSize),
 
                     PagingInfo = new PagingInfo
                     {
-                        CurrentPage = page,
+                        CurrentPage = pageNum,
                         ItemsPerPage = PageSize,
                         TotalNumItems = category == null ? _repository.books.Count() : _repository.books.Where(b => b.Category == category).Count()
                     },
